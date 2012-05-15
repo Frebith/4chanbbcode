@@ -1,33 +1,34 @@
-4chanbbcode
+4chan bbcode
 ===========
 
 It's written in Parenscript (see: bbcode.lisp)
 
-You can simply compile the js file from bbcode.lisp by simply loading up your CL compiler of choice (i only tested on SBCL)
+You can compile the js file from bbcode.lisp by loading up your CL compiler of choice (i only tested on SBCL)
 and running via:
 
-  (require 'parenscript)
-  (load "path/to/bbcode.lisp")
-  (4BBC:compile-4bbc "filename.js")
+- (require 'parenscript)
+- (load "path/to/bbcode.lisp")
+- (4BBC:compile-4bbc "filename.js")
 
 if you don't have parenscript then quicklisp is your best choice for downloading common lisp packages.
 
 
-Supported bbcode are as followed:
+# Supported bbcode are as followed:
 
-(b ...) => bold text
-(u ...) => underline
-(o ...) => overline
-(i ...) => italic
-(s ...) => strikethrough
-(m ...) => courier text
-(spoiler ...) => spoiler
-(sup ...) => smaller text that's raised on the line
-(sub ...) => smaller text that's lowered on the line
-(aa ...) => use for SJIS art
-(sp ) => space [These are done for the user unless you're using a QR (see: 4chan-x)]
+- (b ...) => bold text
+- (u ...) => underline
+- (o ...) => overline
+- (i ...) => italic
+- (s ...) => strikethrough
+- (m ...) => courier text
+- (spoiler ...) => spoiler
+- (sup ...) => smaller text that's raised on the line
+- (sub ...) => smaller text that's lowered on the line
+- (aa ...) => use for SJIS art
+- (sp ) => space [These are done for the user unless you're using a QR (see: 4chan-x)]
 
-example usage:
+# example usage
+
 (b (i (u (o (s (m courier text) (spoiler n(sup o) (sub p)e) (aa jp-text))))))
 
 (m
