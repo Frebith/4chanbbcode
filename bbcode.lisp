@@ -8,15 +8,7 @@
 (defparameter *name*
   "//@name            4chan bbcode")
 (defparameter *description*
-  "//@description     Adds bbcode to 4chan imageboards and enables passive non-breaking spaces when posting
-//                   Following bbcode is supported:
-//                   b => bold, u => underline, o => overline
-//                   i => italic, s => strikethrough, m => courier text
-//                   spoiler => spoiler
-//                   sup => makes text smaller and higher on the line
-//                   sub => makes text smaller and lower on the line
-//                   aa => for SJIS art
-//                   sp => &nbsp [Note: you never need to use these explicitly]")
+  "//@description     Adds bbcode to 4chan imageboards and enables passive non-breaking spaces when posting")
 (defparameter *includes*
   "//@include         http:*//boards.4chan.org/*")
 (defparameter *author*
@@ -27,6 +19,8 @@
   "//@updateURL       https://raw.github.com/Frebith/4chanbbcode/master/4chan-bbcode.js")
 (defparameter *license*
   "//@license         MIT; http://www.opensource.org/licenses/mit-license.php")
+(defparameter *run-at*
+  "//@run-at          document-start")
 (defparameter *MIT*
  "
 /*
@@ -45,9 +39,10 @@
 *NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
 *WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 *SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/")
+*/
+")
 (defparameter *header*
-  (format nil "~A~%~A~%~A~%~A~%~A~%~A~%~A~%~A~%~A~%~%"
+  (format nil "~A~%~A~%~A~%~A~%~A~%~A~%~A~%~A~%~A~A~%~%~%"
                "// ==UserScript=="
                *name*
                *version*
@@ -55,6 +50,7 @@
                *description*
                *license*
                *includes*
+               *run-at*
                *update*
                "// ==/UserScript=="))
 
@@ -91,11 +87,11 @@ tt{font-size:smaller}")
               ;;;&nbsp edit
               (defun update-submit ()
                 ;;get all inputs
-                (var inputs (chain document (get-elements-by-tag-name "input")))
+                (var inputs (chain document (get-elements-by-tag-name "form")))
                 (dotimes (i (@ inputs 'length))
                   ;;loop through to find submit button
-                  (when (= (chain (getprop inputs i) (get-attribute "type")) "submit")
-                    (chain (getprop inputs i) (add-event-listener "mouseup"
+                  (when (/= (chain (getprop inputs i) (get-attribute "id")) "delform")
+                    (chain (getprop inputs i) (add-event-listener "submit"
                                                                   (lambda (e)
                                                                     (spacify))
                                                                   false))))
