@@ -6,7 +6,8 @@
 //@license         MIT; http://www.opensource.org/licenses/mit-license.php
 //@include         http:*//boards.4chan.org/*
 //@run-at          document-start
-//@updateURL       https://raw.github.com/Frebith/4chanbbcode/master/4chan-bbcode.js// ==/UserScript==
+//@updateURL       https://raw.github.com/Frebith/4chanbbcode/master/4chan-bbcode.js
+// ==/UserScript==
 
 
 
